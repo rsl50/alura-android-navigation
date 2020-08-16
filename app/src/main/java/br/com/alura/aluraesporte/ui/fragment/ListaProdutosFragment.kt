@@ -28,7 +28,7 @@ class ListaProdutosFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        estadoAppViewModel.temAppBar = true
+        controlador.navigate(R.id.listaPagamentos)
         buscaProdutos()
     }
 
@@ -53,6 +53,7 @@ class ListaProdutosFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        estadoAppViewModel.temAppBar = true
         configuraRecyclerView()
     }
 
