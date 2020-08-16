@@ -70,7 +70,7 @@
             app:popUpTo="@+id/login"
             app:popUpToInclusive="true" />
     </fragment>
-    
+
     <action
         android:id="@+id/acao_global_login"
         app:destination="@id/login"
