@@ -5,7 +5,7 @@ import br.com.alura.aluraesporte.repository.LoginRepository
 
 class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
 
-    fun loga(){
+    fun loga() {
         repository.loga()
     }
 
@@ -14,5 +14,7 @@ class LoginViewModel(private val repository: LoginRepository) : ViewModel() {
     }
 
     fun estaLogado() : Boolean = repository.estaLogado()
+
+    fun naoEstaLogado(): Boolean = !estaLogado()
 
 }
