@@ -2,6 +2,7 @@ package br.com.alura.aluraesporte.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import br.com.alura.aluraesporte.R
 import br.com.alura.aluraesporte.ui.viewmodel.EstadoAppViewModel
@@ -25,12 +26,15 @@ class MainActivity : AppCompatActivity() {
 
             // Coloca o label do Fragment como título do Fragment na tela
             title = destination.label
-
-            // Controla exibição da ActionBar conforme a tela
-            when(destination.id) {
-                R.id.listaProdutos -> supportActionBar?.show()
-                R.id.login -> supportActionBar?.hide()
-            }
+            viewModel.appBar.observe(this, Observer {
+                it?.let { temAppBar ->
+                    if(temAppBar){
+                        supportActionBar?.show()
+                    } else {
+                        supportActionBar?.hide()
+                    }
+                }
+            })
         }
     }
 
