@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.alura.aluraesporte.R
 import br.com.alura.aluraesporte.ui.recyclerview.adapter.ProdutosAdapter
+import br.com.alura.aluraesporte.ui.viewmodel.LoginViewModel
 import br.com.alura.aluraesporte.ui.viewmodel.ProdutosViewModel
 import kotlinx.android.synthetic.main.lista_produtos.*
 import org.koin.android.ext.android.inject
@@ -17,6 +18,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class ListaProdutosFragment : Fragment() {
 
     private val viewModel: ProdutosViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
     private val adapter: ProdutosAdapter by inject()
     private val controlador by lazy {
         findNavController()
@@ -32,6 +34,16 @@ class ListaProdutosFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
         inflater?.inflate(R.menu.menu_lista_produtos, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.menu_lista_produtos_deslogar){
+            loginViewModel.desloga()
+            val direcao = ListaProdutosFragmentDirections.acaoListaProdutosParaLogin()
+            controlador.navigate(direcao)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun buscaProdutos() {
